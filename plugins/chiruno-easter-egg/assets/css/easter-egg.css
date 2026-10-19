@@ -1,0 +1,49 @@
+/* ============================================================
+ * 琪露诺彩蛋主题 - 掉落彩蛋样式 (assets/css/easter-egg.css)
+ * ------------------------------------------------------------
+ * 样式说明：
+ *   - .chiruno-egg 为彩蛋图片的初始样式（固定定位在点击处）；
+ *   - @keyframes chiruno-egg-fall 控制"向下掉落 + 淡出消失"，约 3 秒；
+ *   - 掉落距离通过 CSS 变量 --chiruno-fall-distance 由 JS 按视口动态设置，
+ *     缺省 240px；动画时长通过 --chiruno-egg-duration 设置，缺省 3s。
+ * ============================================================ */
+
+.chiruno-egg {
+    position: fixed;              /* 相对视口定位，配合 JS 的 clientX/clientY */
+    z-index: 999999;              /* 置于页面最上层 */
+    pointer-events: none;         /* 不拦截后续点击，也不会再次触发彩蛋 */
+    user-select: none;
+    -webkit-user-select: none;
+    width: 96px;                  /* 图片宽度；高度随原图比例自适应 */
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    opacity: 1;
+
+    /* 掉落 + 淡出动画：时长由 JS 注入的 CSS 变量控制，缺省 3s */
+    animation-name: chiruno-egg-fall;
+    animation-duration: var(--chiruno-egg-duration, 3s);
+    animation-timing-function: ease-in;   /* 模拟受重力加速下落 */
+    animation-fill-mode: forwards;        /* 动画结束后保持最终态（透明） */
+    will-change: transform, opacity;
+}
+
+/* 从点击位置开始，向下掉落指定距离，同时逐渐淡出消失 */
+@keyframes chiruno-egg-fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(var(--chiruno-fall-distance, 240px)) rotate(8deg);
+        opacity: 0;
+    }
+}
+
+/* 用户系统偏好减少动效时，直接不显示彩蛋，避免干扰 */
+@media (prefers-reduced-motion: reduce) {
+    .chiruno-egg {
+        display: none;
+    }
+}

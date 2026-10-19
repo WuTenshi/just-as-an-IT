@@ -1,0 +1,62 @@
+:root {
+  /* 梦幻配色 */
+  --dreamy-pink: #ff69b4;
+  --dreamy-pink-light: #ffb6d9;
+  --dreamy-pink-dark: #ff1493;
+
+  --dreamy-blue: #87ceeb;
+  --dreamy-blue-light: #b0e0e6;
+  --dreamy-blue-dark: #4682b4;
+
+  --dreamy-purple: #dda0dd;
+  --dreamy-white: #ffffff;
+  --dreamy-white-soft: #f8f8ff;
+
+  /* 背景渐变 */
+  --dreamy-bg-gradient: linear-gradient(135deg,
+    #ffe4f5 0%,
+    #e6f3ff 25%,
+    #fff0f8 50%,
+    #e0f4ff 75%,
+    #ffe8f7 100%);
+
+  /* 文字颜色 */
+  --dreamy-text: #4a4a4a;
+  --dreamy-text-light: #888888;
+  --dreamy-text-white: #ffffff;
+
+  /* 毛玻璃效果 */
+  --glass-bg: rgba(255, 255, 255, 0.25);
+  --glass-bg-light: rgba(255, 255, 255, 0.15);
+  --glass-bg-dark: rgba(255, 255, 255, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: 0 8px 32px 0 rgba(255, 105, 180, 0.15);
+  --glass-blur: blur(10px);
+
+  /* 间距 */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+
+  /* 圆角 */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+
+  /* 阴影 */
+  --shadow-soft: 0 4px 24px rgba(255, 105, 180, 0.12);
+  --shadow-medium: 0 8px 32px rgba(135, 206, 235, 0.2);
+  --shadow-strong: 0 12px 48px rgba(255, 105, 180, 0.25);
+
+  /* 星星大小 */
+  --star-size-sm: 12px;
+  --star-size-md: 20px;
+  --star-size-lg: 28px;
+
+  /* 布局 */
+  --content-width: 1080px;
+  --header-height: 68px;
+}
