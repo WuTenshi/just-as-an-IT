@@ -129,9 +129,9 @@
 <img src="/just-as-an-IT/2026/09/15/%E4%B9%90%E6%8B%8D_2/1.png" class="">
 <p>登录500</p>
 <p>实际上，现在才明白，这个小站使用了python+SQLite，非常轻量化的小站</p>
-<p>查询config.py？根本没有连接数据库<br>实际上，使用Lepai.db（即SQLite）</p>
+<p>查询config.py？根本没有连接数据库<br>实际上，该站使用的是Lepai.db（即SQLite）来存储数据</p>
 <p>用 sqlite3 命令查表，发现 users 表的主键竟然叫 name，根本没有什么 id、username 字段。代码和数据库结构的脱节，导致了登录时的直接崩溃</p>
-<p>还有呢？Lepai.db虽然无法直接打开，但它能sqlite3命令查表<br>密码都没有加密，直接显示在终端</p>
+<p>还有呢？Lepai.db，用sqlite3命令查表<br>发现密码都没有加密，直接显示在终端</p>
 <p>还有哭笑不得的一幕：<br>解决500后出现401<br>起初还以为是密码加密后不对应的原因</p>
 <img src="/just-as-an-IT/2026/09/15/%E4%B9%90%E6%8B%8D_2/2.png" class="">
 
