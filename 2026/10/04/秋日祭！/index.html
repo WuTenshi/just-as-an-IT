@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-site-root="/just-as-an-IT/">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>秋日祭！ | 有顶天程序站</title>
+
+  
+  
+  <meta name="author" content="Wu天人合一">
+  <meta name="generator" content="Hexo 8.1.2">
+  <link rel="canonical" href="https://wutenshi.github.io/just-as-an-IT/2026/10/04/%E7%A7%8B%E6%97%A5%E7%A5%AD%EF%BC%81/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="秋日祭！">
+  <meta property="og:site_name" content="有顶天程序站">
+  
+
+  
+    
+    <link rel="icon" href="/just-as-an-IT/images/tenshi-icon.png" type="image/png">
+    <link rel="shortcut icon" href="/just-as-an-IT/images/tenshi-icon.png">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/css/variables.css?v=1e0a224d">
+  <link rel="stylesheet" href="/just-as-an-IT/css/dreamy-stars.css?v=7460bff1">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/plugins/chiruno-easter-egg/assets/css/easter-egg.css?v=1.0.3-e6f807c3" data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3">
+
+
+
+  
+  <style>
+    :root {
+      --dreamy-pink: #ff69b4;
+      --dreamy-blue: #87ceeb;
+      --dreamy-text-white: #ffffff;
+    }
+  </style>
+  
+
+  
+  
+  <style>
+    body {
+      background-color: #ffe4f5;
+      background-image:
+        linear-gradient(135deg, rgba(255, 232, 247, 0.1), rgba(224, 244, 255, 0.1)),
+        url('/just-as-an-IT/images/tenshi-bg-sharp.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-attachment: fixed, fixed;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    /* 移动端固定背景开销大且 Safari 支持不稳，改为随页面滚动 */
+    @media (max-width: 900px) {
+      body {
+        background-attachment: scroll, scroll;
+      }
+    }
+  </style>
+  
+
+  
+</head>
+
+  
+  <body class="has-bg">
+    
+  
+  <div id="star-field" class="star-field" aria-hidden="true"
+       data-count="18"
+       data-colors="pink,blue,white,purple"
+       data-motion="true"></div>
+
+
+    <div class="site-wrapper">
+      <header class="site-header">
+  <div class="site-header__inner site-container">
+    <a class="site-brand" href="/just-as-an-IT/">
+      <span class="site-brand__title">有顶天程序站</span>
+      
+      
+        <span class="site-brand__subtitle">欢迎来到天人的小窝~~</span>
+      
+    </a>
+
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Menu">
+      
+        <a class="site-nav__link" href="/just-as-an-IT/">Home</a>
+      
+        <a class="site-nav__link" href="/just-as-an-IT/archives">Archives</a>
+      
+
+      
+      
+      
+      
+      
+
+      
+    </nav>
+  </div>
+</header>
+
+      <main class="site-main" id="main">
+        <div class="site-container">
+          <article class="post">
+  <header class="post-hero glass">
+    <h1 class="post-hero__title">秋日祭！</h1>
+    <div class="post-meta">
+  <time class="post-meta__date" datetime="2026-10-04T09:40:49.000Z">2026-10-04</time>
+
+  
+
+  
+</div>
+
+  </header>
+
+  <div class="post-layout">
+    <div class="post-body">
+      <div class="article-content"><img src="/just-as-an-IT/2026/10/04/%E7%A7%8B%E6%97%A5%E7%A5%AD%EF%BC%81/1.png" class="">
+<p>约定在国庆的秋日祭合作开始了<br>意料之中，站长和z站人员还是产生了矛盾，从此一蹶不振<br>一个月前就归我接手了<br>有小琦和繁星的创作支持以及艺术评估，页面设计不成问题<br>活动页面，创作相对容易，不过技术力有限，很难做得精致</p>
+<img src="/just-as-an-IT/2026/10/04/%E7%A7%8B%E6%97%A5%E7%A5%AD%EF%BC%81/2.png" class="">
+
+<img src="/just-as-an-IT/2026/10/04/%E7%A7%8B%E6%97%A5%E7%A5%AD%EF%BC%81/3.png" class="">
+
+<img src="/just-as-an-IT/2026/10/04/%E7%A7%8B%E6%97%A5%E7%A5%AD%EF%BC%81/4.png" class="">
+
+<p>活动仅有四个稿件，缺人手是最大的痛点</p>
+<p>技术上，通过搓出一个初版html页面，导入png，再通过js实时渲染<br>插入大量的地址和动态效果实现了页面美化<br>由于是纯静态页面，直接更改Node.js项目的nginx配置秋日祭路径即可<br>只添了几行，非常简单的操作<br>location &#x3D; &#x2F;autumn-festival {<br>        return 301 &#x2F;autumn-festival&#x2F;;<br>    }<br>    location ^~ &#x2F;autumn-festival&#x2F; {<br>        alias &#x2F;www&#x2F;wwwroot&#x2F;nuomill-autumn-festival&#x2F;;<br>    }</p>
+<p>还有一个友情赞助，由群友 藤原妹红 做的盲文点阵项目，我将它部署到了秋日祭页面<br>同样是纯静态页面，只需要修改nginx配置即可<br>location &#x3D; &#x2F;braille-web {<br>        return 301 &#x2F;braille-web&#x2F;;<br>    }<br>    location ^~ &#x2F;braille-web&#x2F; {<br>        alias &#x2F;www&#x2F;wwwroot&#x2F;braille-web&#x2F;;<br>        index index.html;<br>    }</p>
+<p>合作视频最终上传到了b站，播放量惨不忍睹<br>小站难活，的确如此吧</p>
+</div>
+
+      
+
+      
+<nav class="post-nav" aria-label="Pagination">
+  
+    <a class="post-nav__item post-nav__item--prev" href="/just-as-an-IT/2026/10/06/Xshell%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95/">
+      <span class="post-nav__label">← Newer</span>
+      <span class="post-nav__title">密码登录上线</span>
+    </a>
+  
+
+  
+    <a class="post-nav__item post-nav__item--next" href="/just-as-an-IT/2026/09/15/%E4%B9%90%E6%8B%8D_2/">
+      <span class="post-nav__label">Older →</span>
+      <span class="post-nav__title">乐拍：500？401？</span>
+    </a>
+  
+</nav>
+
+
+    </div>
+
+    
+
+
+  </div>
+</article>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+  <div class="site-footer__inner site-container">
+    
+    <p class="site-footer__copy">
+      &copy; 绯想历2026&ndash;2026
+      <a href="/just-as-an-IT/">Wu天人合一</a>
+    </p>
+
+    
+      <p class="site-footer__note">全人类的绯想天</p>
+    
+  </div>
+</footer>
+
+    </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+    
+  <script src="/just-as-an-IT/js/starfall.js?v=5f251466"></script>
+
+<script src="/just-as-an-IT/js/theme.js?v=017378d7"></script>
+
+  <script src="/just-as-an-IT/plugins/chiruno-easter-egg/assets/js/easter-egg.js?v=1.0.3-23cd2776" defer data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3"></script>
+
+
+
+  </body>
+</html>
