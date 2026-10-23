@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-site-root="/just-as-an-IT/">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>安全工作以及防护脚本 | 有顶天程序站</title>
+
+  
+  
+  <meta name="author" content="Wu天人合一">
+  <meta name="generator" content="Hexo 8.1.2">
+  <link rel="canonical" href="https://wutenshi.github.io/just-as-an-IT/2026/10/19/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="安全工作以及防护脚本">
+  <meta property="og:site_name" content="有顶天程序站">
+  
+
+  
+    
+    <link rel="icon" href="/just-as-an-IT/images/tenshi-icon.png" type="image/png">
+    <link rel="shortcut icon" href="/just-as-an-IT/images/tenshi-icon.png">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/css/variables.css?v=1e0a224d">
+  <link rel="stylesheet" href="/just-as-an-IT/css/dreamy-stars.css?v=7460bff1">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/plugins/chiruno-easter-egg/assets/css/easter-egg.css?v=1.0.3-e6f807c3" data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3">
+
+
+
+  
+  <style>
+    :root {
+      --dreamy-pink: #ff69b4;
+      --dreamy-blue: #87ceeb;
+      --dreamy-text-white: #ffffff;
+    }
+  </style>
+  
+
+  
+  
+  <style>
+    body {
+      background-color: #ffe4f5;
+      background-image:
+        linear-gradient(135deg, rgba(255, 232, 247, 0.1), rgba(224, 244, 255, 0.1)),
+        url('/just-as-an-IT/images/tenshi-bg-sharp.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-attachment: fixed, fixed;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    /* 移动端固定背景开销大且 Safari 支持不稳，改为随页面滚动 */
+    @media (max-width: 900px) {
+      body {
+        background-attachment: scroll, scroll;
+      }
+    }
+  </style>
+  
+
+  
+</head>
+
+  
+  <body class="has-bg">
+    
+  
+  <div id="star-field" class="star-field" aria-hidden="true"
+       data-count="18"
+       data-colors="pink,blue,white,purple"
+       data-motion="true"></div>
+
+
+    <div class="site-wrapper">
+      <header class="site-header">
+  <div class="site-header__inner site-container">
+    <a class="site-brand" href="/just-as-an-IT/">
+      <span class="site-brand__title">有顶天程序站</span>
+      
+      
+        <span class="site-brand__subtitle">欢迎来到天人的小窝~~</span>
+      
+    </a>
+
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Menu">
+      
+        <a class="site-nav__link" href="/just-as-an-IT/">Home</a>
+      
+        <a class="site-nav__link" href="/just-as-an-IT/archives">Archives</a>
+      
+
+      
+      
+      
+      
+      
+
+      
+    </nav>
+  </div>
+</header>
+
+      <main class="site-main" id="main">
+        <div class="site-container">
+          <article class="post">
+  <header class="post-hero glass">
+    <h1 class="post-hero__title">安全工作以及防护脚本</h1>
+    <div class="post-meta">
+  <time class="post-meta__date" datetime="2026-10-19T04:16:49.000Z">2026-10-19</time>
+
+  
+
+  
+</div>
+
+  </header>
+
+  <div class="post-layout">
+    <div class="post-body">
+      <div class="article-content"><p>上回提到，进入VNC终端后发现<br>大量代理IP对服务器IP进行了访问，全网的扫描器以及黑客的僵尸网络每天24小时都在无差别地扫描端口<br>安全工作刻不容缓，首先想到的就是防火墙配置<br>宝塔面板第三方应用中存在一个免费防火墙的功能，安装后，大量日志触目惊心</p>
+
+<p>同时，我们发现部分用户观察视频的请求过多会被当做CC攻击<br>我及时做了预防，提高了访问阈值<br>即便这样仍然会暂时封禁部分IP，但无伤大雅<br>配置完防火墙后，开始查询真正导致宝塔面板崩溃的原因<br>通过查看日志，罪魁祸首是内存溢出（OOM）<br>内存溢出可能导致宝塔面板和Nginx崩溃，严重时可能关闭前后端项目，导致网站崩溃<br>这也恰好印证了之前网站崩溃的原因<br>free -h可以查看linux内存情况<br>ps aux –sort&#x3D;-%mem | head -10查看占用最大的进程<br>发现是Nginx进程占用最大，同时前几位状态是is shutting<br>说明Nginx在大量访问后不堪重负，处于崩溃再重启的死循环，占用了大量内存<br>因此，我写了一份每五分钟触发的脚本，当Nginx进程超过3时，使用pkill -9 nginx暴力杀掉进程<br>至此，内存再也没有占用过量，并且更改Swap文件扩大了虚拟内存<br>服务器再也没有崩溃过</p>
+</div>
+
+      
+
+      
+<nav class="post-nav" aria-label="Pagination">
+  
+    <a class="post-nav__item post-nav__item--prev" href="/just-as-an-IT/2026/10/19/%E8%B4%A6%E5%8F%B7%E6%9B%B4%E6%94%B9%EF%BC%9F%EF%BC%81/">
+      <span class="post-nav__label">← Newer</span>
+      <span class="post-nav__title">账号更改？！</span>
+    </a>
+  
+
+  
+    <a class="post-nav__item post-nav__item--next" href="/just-as-an-IT/2026/10/18/%E4%BA%8C%E6%AC%A1%E5%8F%8D%E5%88%B6/">
+      <span class="post-nav__label">Older →</span>
+      <span class="post-nav__title">二次反制</span>
+    </a>
+  
+</nav>
+
+
+    </div>
+
+    
+
+
+  </div>
+</article>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+  <div class="site-footer__inner site-container">
+    
+    <p class="site-footer__copy">
+      &copy; 绯想历2026&ndash;2026
+      <a href="/just-as-an-IT/">Wu天人合一</a>
+    </p>
+
+    
+      <p class="site-footer__note">全人类的绯想天</p>
+    
+  </div>
+</footer>
+
+    </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+    
+  <script src="/just-as-an-IT/js/starfall.js?v=5f251466"></script>
+
+<script src="/just-as-an-IT/js/theme.js?v=017378d7"></script>
+
+  <script src="/just-as-an-IT/plugins/chiruno-easter-egg/assets/js/easter-egg.js?v=1.0.3-23cd2776" defer data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3"></script>
+
+
+
+  </body>
+</html>
