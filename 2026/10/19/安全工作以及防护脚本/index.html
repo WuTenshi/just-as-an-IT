@@ -10,7 +10,7 @@
   
   <meta name="author" content="Wu天人合一">
   <meta name="generator" content="Hexo 8.1.2">
-  <link rel="canonical" href="https://wutenshi.github.io/just-as-an-IT/2026/10/19/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C/">
+  <link rel="canonical" href="https://wutenshi.github.io/just-as-an-IT/2026/10/19/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C%E4%BB%A5%E5%8F%8A%E9%98%B2%E6%8A%A4%E8%84%9A%E6%9C%AC/">
 
   <meta property="og:type" content="article">
   <meta property="og:title" content="安全工作以及防护脚本">
@@ -126,7 +126,7 @@
   <div class="post-layout">
     <div class="post-body">
       <div class="article-content"><p>上回提到，进入VNC终端后发现<br>大量代理IP对服务器IP进行了访问，全网的扫描器以及黑客的僵尸网络每天24小时都在无差别地扫描端口<br>安全工作刻不容缓，首先想到的就是防火墙配置<br>宝塔面板第三方应用中存在一个免费防火墙的功能，安装后，大量日志触目惊心</p>
-
+<img src="/just-as-an-IT/2026/10/19/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C%E4%BB%A5%E5%8F%8A%E9%98%B2%E6%8A%A4%E8%84%9A%E6%9C%AC/1.png" class="">
 <p>同时，我们发现部分用户观察视频的请求过多会被当做CC攻击<br>我及时做了预防，提高了访问阈值<br>即便这样仍然会暂时封禁部分IP，但无伤大雅<br>配置完防火墙后，开始查询真正导致宝塔面板崩溃的原因<br>通过查看日志，罪魁祸首是内存溢出（OOM）<br>内存溢出可能导致宝塔面板和Nginx崩溃，严重时可能关闭前后端项目，导致网站崩溃<br>这也恰好印证了之前网站崩溃的原因<br>free -h可以查看linux内存情况<br>ps aux –sort&#x3D;-%mem | head -10查看占用最大的进程<br>发现是Nginx进程占用最大，同时前几位状态是is shutting<br>说明Nginx在大量访问后不堪重负，处于崩溃再重启的死循环，占用了大量内存<br>因此，我写了一份每五分钟触发的脚本，当Nginx进程超过3时，使用pkill -9 nginx暴力杀掉进程<br>至此，内存再也没有占用过量，并且更改Swap文件扩大了虚拟内存<br>服务器再也没有崩溃过</p>
 </div>
 
