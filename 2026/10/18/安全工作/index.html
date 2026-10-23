@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-site-root="/just-as-an-IT/">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>远程登录成功 | 有顶天程序站</title>
+
+  
+  
+  <meta name="author" content="Wu天人合一">
+  <meta name="generator" content="Hexo 8.1.2">
+  <link rel="canonical" href="https://wutenshi.github.io/just-as-an-IT/2026/10/18/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="远程登录成功">
+  <meta property="og:site_name" content="有顶天程序站">
+  
+
+  
+    
+    <link rel="icon" href="/just-as-an-IT/images/tenshi-icon.png" type="image/png">
+    <link rel="shortcut icon" href="/just-as-an-IT/images/tenshi-icon.png">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/css/variables.css?v=1e0a224d">
+  <link rel="stylesheet" href="/just-as-an-IT/css/dreamy-stars.css?v=7460bff1">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/plugins/chiruno-easter-egg/assets/css/easter-egg.css?v=1.0.3-e6f807c3" data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3">
+
+
+
+  
+  <style>
+    :root {
+      --dreamy-pink: #ff69b4;
+      --dreamy-blue: #87ceeb;
+      --dreamy-text-white: #ffffff;
+    }
+  </style>
+  
+
+  
+  
+  <style>
+    body {
+      background-color: #ffe4f5;
+      background-image:
+        linear-gradient(135deg, rgba(255, 232, 247, 0.1), rgba(224, 244, 255, 0.1)),
+        url('/just-as-an-IT/images/tenshi-bg-sharp.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-attachment: fixed, fixed;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    /* 移动端固定背景开销大且 Safari 支持不稳，改为随页面滚动 */
+    @media (max-width: 900px) {
+      body {
+        background-attachment: scroll, scroll;
+      }
+    }
+  </style>
+  
+
+  
+</head>
+
+  
+  <body class="has-bg">
+    
+  
+  <div id="star-field" class="star-field" aria-hidden="true"
+       data-count="18"
+       data-colors="pink,blue,white,purple"
+       data-motion="true"></div>
+
+
+    <div class="site-wrapper">
+      <header class="site-header">
+  <div class="site-header__inner site-container">
+    <a class="site-brand" href="/just-as-an-IT/">
+      <span class="site-brand__title">有顶天程序站</span>
+      
+      
+        <span class="site-brand__subtitle">欢迎来到天人的小窝~~</span>
+      
+    </a>
+
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Menu">
+      
+        <a class="site-nav__link" href="/just-as-an-IT/">Home</a>
+      
+        <a class="site-nav__link" href="/just-as-an-IT/archives">Archives</a>
+      
+
+      
+      
+      
+      
+      
+
+      
+    </nav>
+  </div>
+</header>
+
+      <main class="site-main" id="main">
+        <div class="site-container">
+          <article class="post">
+  <header class="post-hero glass">
+    <h1 class="post-hero__title">远程登录成功</h1>
+    <div class="post-meta">
+  <time class="post-meta__date" datetime="2026-10-18T07:16:49.000Z">2026-10-18</time>
+
+  
+
+  
+</div>
+
+  </header>
+
+  <div class="post-layout">
+    <div class="post-body">
+      <div class="article-content"><p>之前的一段时间，每天早上宝塔面板就会定时崩溃</p>
+<img src="/just-as-an-IT/2026/10/18/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C/1.png" class="">
+<p>起初并没有在意，直到它成为一个每天都会定时发生的事件<br>有一天，网站炸了，而打不开宝塔面板就没有办法维修<br>足足拖了半天，龙虾重启服务器后才有方法进入宝塔重启前后端项目<br>终究不是方法，开始研究SSH远程连接</p>
+<img src="/just-as-an-IT/2026/10/18/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C/2.png" class="">
+<p>密码登录关闭了，很正常的安全措施<br>那么通过SSH登录需要得到一份密钥，联系龙虾打开Greencloud的VNC终端，准备生成新RSA密钥<br>但是，VNC终端出现了刷屏现象</p>
+<img src="/just-as-an-IT/2026/10/18/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C/3.png" class="">
+<p>Linux 的防火墙（UFW）正在疯狂拦截外部攻击和扫描的日志<br>大量代理IP对服务器IP进行了访问，全网的扫描器以及黑客的僵尸网络每天 24 小时都在无差别地扫描端口<br>并且，目标是443端口，HTTPS是主要攻击目标<br>输入dmesg -n 1防止刷屏，之后突然想起，VNC终端也是要登录的<br>root密码无从得知，并且重置密码后也是发给站长的邮箱</p>
+<img src="/just-as-an-IT/2026/10/18/%E5%AE%89%E5%85%A8%E5%B7%A5%E4%BD%9C/4.png" class="">
+<p>计划暂时搁置<br>第二天，站长提供了一份RSA密钥，直接发给我了<br>SSH终端登录成功，如此，我就能在宝塔面板掉线的第一时间救活了</p>
+</div>
+
+      
+
+      
+<nav class="post-nav" aria-label="Pagination">
+  
+    <a class="post-nav__item post-nav__item--prev" href="/just-as-an-IT/2026/10/18/%E4%BA%8C%E6%AC%A1%E5%8F%8D%E5%88%B6/">
+      <span class="post-nav__label">← Newer</span>
+      <span class="post-nav__title">二次反制</span>
+    </a>
+  
+
+  
+    <a class="post-nav__item post-nav__item--next" href="/just-as-an-IT/2026/10/16/%E5%8F%8D%E5%88%B6/">
+      <span class="post-nav__label">Older →</span>
+      <span class="post-nav__title">反制</span>
+    </a>
+  
+</nav>
+
+
+    </div>
+
+    
+
+
+  </div>
+</article>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+  <div class="site-footer__inner site-container">
+    
+    <p class="site-footer__copy">
+      &copy; 绯想历2026&ndash;2026
+      <a href="/just-as-an-IT/">Wu天人合一</a>
+    </p>
+
+    
+      <p class="site-footer__note">全人类的绯想天</p>
+    
+  </div>
+</footer>
+
+    </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+    
+  <script src="/just-as-an-IT/js/starfall.js?v=5f251466"></script>
+
+<script src="/just-as-an-IT/js/theme.js?v=017378d7"></script>
+
+  <script src="/just-as-an-IT/plugins/chiruno-easter-egg/assets/js/easter-egg.js?v=1.0.3-23cd2776" defer data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3"></script>
+
+
+
+  </body>
+</html>
