@@ -1598,3 +1598,53 @@ body.has-bg::before {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* ---------------- 右下角看板娘 ---------------- */
+
+.site-mascot {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  width: var(--mascot-width, 180px);
+  max-width: 38vw;
+  line-height: 0;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 10px 18px rgba(43, 51, 65, 0.22));
+  animation: mascot-rise 0.9s cubic-bezier(0.2, 0.8, 0.3, 1) both;
+}
+
+.site-mascot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@keyframes mascot-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 看板娘占住右下角时，回到顶部让到她左侧 */
+body:has(.site-mascot) .back-to-top {
+  right: calc(var(--mascot-width, 180px) + 18px);
+}
+
+@media (max-width: 900px) {
+  .site-mascot {
+    display: none;
+  }
+
+  body:has(.site-mascot) .back-to-top {
+    right: 16px;
+  }
+}
