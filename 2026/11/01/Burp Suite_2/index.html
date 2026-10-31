@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" data-site-root="/just-as-an-IT/">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>审核分配成功解决 | 有顶天程序站</title>
+
+  
+  
+  <meta name="author" content="Wu天人合一">
+  <meta name="generator" content="Hexo 8.1.2">
+  <link rel="canonical" href="https://wutenshi.github.io/just-as-an-IT/2026/11/01/Burp%20Suite_2/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="审核分配成功解决">
+  <meta property="og:site_name" content="有顶天程序站">
+  
+
+  
+    
+    <link rel="icon" href="/just-as-an-IT/images/tenshi-icon.png" type="image/png">
+    <link rel="shortcut icon" href="/just-as-an-IT/images/tenshi-icon.png">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/css/variables.css?v=1e0a224d">
+  <link rel="stylesheet" href="/just-as-an-IT/css/dreamy-stars.css?v=7460bff1">
+  
+  <link rel="stylesheet" href="/just-as-an-IT/plugins/chiruno-easter-egg/assets/css/easter-egg.css?v=1.0.3-e6f807c3" data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3">
+
+
+
+  
+  <style>
+    :root {
+      --dreamy-pink: #ff69b4;
+      --dreamy-blue: #87ceeb;
+      --dreamy-text-white: #ffffff;
+    }
+  </style>
+  
+
+  
+  
+  <style>
+    body {
+      background-color: #ffe4f5;
+      background-image:
+        linear-gradient(135deg, rgba(255, 232, 247, 0.1), rgba(224, 244, 255, 0.1)),
+        url('/just-as-an-IT/images/tenshi-bg-sharp.jpg');
+      background-size: cover, cover;
+      background-position: center, center;
+      background-attachment: fixed, fixed;
+      background-repeat: no-repeat, no-repeat;
+    }
+
+    /* 移动端固定背景开销大且 Safari 支持不稳，改为随页面滚动 */
+    @media (max-width: 900px) {
+      body {
+        background-attachment: scroll, scroll;
+      }
+    }
+  </style>
+  
+
+  
+</head>
+
+  
+  <body class="has-bg">
+    
+  
+  <div id="star-field" class="star-field" aria-hidden="true"
+       data-count="18"
+       data-colors="pink,blue,white,purple"
+       data-motion="true"></div>
+
+
+    <div class="site-wrapper">
+      <header class="site-header">
+  <div class="site-header__inner site-container">
+    <a class="site-brand" href="/just-as-an-IT/">
+      <span class="site-brand__title">有顶天程序站</span>
+      
+      
+        <span class="site-brand__subtitle">欢迎来到天人的小窝~~</span>
+      
+    </a>
+
+    <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="site-nav" id="site-nav" aria-label="Menu">
+      
+        <a class="site-nav__link" href="/just-as-an-IT/">Home</a>
+      
+        <a class="site-nav__link" href="/just-as-an-IT/archives">Archives</a>
+      
+
+      
+      
+      
+      
+      
+
+      
+    </nav>
+  </div>
+</header>
+
+      <main class="site-main" id="main">
+        <div class="site-container">
+          <article class="post">
+  <header class="post-hero glass">
+    <h1 class="post-hero__title">审核分配成功解决</h1>
+    <div class="post-meta">
+  <time class="post-meta__date" datetime="2026-10-31T22:40:49.000Z">2026-11-01</time>
+
+  
+
+  
+</div>
+
+  </header>
+
+  <div class="post-layout">
+    <div class="post-body">
+      <div class="article-content"><p>今天晚上做了不少的安全渗透测试<br>1：JWT 伪造与越权测试<br>上文提到，我把 user_id 篡改为 4793（另一个用户），并使用之前通过 strings 扒出来的 JWT_SECRET 重新签名<br>发送请求，试图越权修改别人的数据<br>结果：服务器返回 401 TOKEN_EXPIRED。这说明系统在验证签名后，还通过 Session 进行了强绑定校验，系统防御成功<br>2：验证码防爆破测试<br>拦截登录接口，尝试用Burp的攻击器模块对6位数字验证码进行爆破<br>结果：跑到第 5 次请求时，服务器直接返回了 429 Too Many Requests，并将我短暂拉黑。系统的限流机制防御成功:<br>3：高危存储型 XSS：绕过上传限制<br>无视了前端“只能传图片”的限制，构造一个恶意的 SVG 文件<br>（里面包含 <script>alert(&#39;XSS&#39;)</script>）<br>强行发送POST请求，结果：服务器返回了200，并返回了一个路径&#x2F;uploads&#x2F;videos&#x2F;1793452872_…<br>访问报404，说明存在动静分离目录，通过find找到了该目录<br>通过修改 Nginx 配置打通了路由，最终在浏览器访问时，成功触发了脚本解析报错。这证明了任何用户可以上传恶意脚本并诱导其他用户点击，实现账号接管</p>
+<img src="/just-as-an-IT/2026/11/01/Burp%20Suite_2/1.png" class="">
+<p>挖到一个漏洞，积累亿个经验</p>
+</div>
+
+      
+
+      
+<nav class="post-nav" aria-label="Pagination">
+  
+
+  
+    <a class="post-nav__item post-nav__item--next" href="/just-as-an-IT/2026/10/31/Burp%20Suite/">
+      <span class="post-nav__label">Older →</span>
+      <span class="post-nav__title">又做好了一个网页美化</span>
+    </a>
+  
+</nav>
+
+
+    </div>
+
+    
+
+
+  </div>
+</article>
+
+        </div>
+      </main>
+      <footer class="site-footer">
+  <div class="site-footer__inner site-container">
+    
+    <p class="site-footer__copy">
+      &copy; 绯想历2026&ndash;2026
+      <a href="/just-as-an-IT/">Wu天人合一</a>
+    </p>
+
+    
+      <p class="site-footer__note">全人类的绯想天</p>
+    
+  </div>
+</footer>
+
+    </div>
+    <button class="back-to-top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+    
+  <script src="/just-as-an-IT/js/starfall.js?v=5f251466"></script>
+
+<script src="/just-as-an-IT/js/theme.js?v=017378d7"></script>
+
+  <script src="/just-as-an-IT/plugins/chiruno-easter-egg/assets/js/easter-egg.js?v=1.0.3-23cd2776" defer data-plugin="chiruno-easter-egg" data-plugin-version="1.0.3"></script>
+
+
+
+  </body>
+</html>
