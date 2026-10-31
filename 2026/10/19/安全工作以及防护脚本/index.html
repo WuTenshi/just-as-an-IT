@@ -119,6 +119,17 @@
   
 
   
+    <span class="post-meta__sep" aria-hidden="true">·</span>
+    <span class="post-meta__tags">
+      
+        <a class="post-meta__tag" href="/just-as-an-IT/tags/%E5%AE%89%E5%85%A8/">#安全</a>
+      
+        <a class="post-meta__tag" href="/just-as-an-IT/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/">#故障排查</a>
+      
+        <a class="post-meta__tag" href="/just-as-an-IT/tags/%E8%BF%90%E7%BB%B4%E6%97%A5%E5%B8%B8/">#运维日常</a>
+      
+    </span>
+  
 </div>
 
   </header>
@@ -130,6 +141,16 @@
 <p>同时，我们发现部分用户观察视频的请求过多会被当做CC攻击<br>我及时做了预防，提高了访问阈值<br>即便这样仍然会暂时封禁部分IP，但无伤大雅<br>配置完防火墙后，开始查询真正导致宝塔面板崩溃的原因<br>通过查看日志，罪魁祸首是内存溢出（OOM）<br>内存溢出可能导致宝塔面板和Nginx崩溃，严重时可能关闭前后端项目，导致网站崩溃<br>这也恰好印证了之前网站崩溃的原因<br>free -h可以查看linux内存情况<br>ps aux –sort&#x3D;-%mem | head -10查看占用最大的进程<br>发现是Nginx进程占用最大，同时前几位状态是is shutting<br>说明Nginx在大量访问后不堪重负，处于崩溃再重启的死循环，占用了大量内存<br>因此，我写了一份每五分钟触发的脚本，当Nginx进程超过3时，使用pkill -9 nginx暴力杀掉进程<br>至此，内存再也没有占用过量，并且更改Swap文件扩大了虚拟内存<br>服务器再也没有崩溃过</p>
 </div>
 
+      
+        <div class="post-tags">
+          
+            <a class="tag" href="/just-as-an-IT/tags/%E5%AE%89%E5%85%A8/"># 安全</a>
+          
+            <a class="tag" href="/just-as-an-IT/tags/%E6%95%85%E9%9A%9C%E6%8E%92%E6%9F%A5/"># 故障排查</a>
+          
+            <a class="tag" href="/just-as-an-IT/tags/%E8%BF%90%E7%BB%B4%E6%97%A5%E5%B8%B8/"># 运维日常</a>
+          
+        </div>
       
 
       
