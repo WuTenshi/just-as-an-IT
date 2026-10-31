@@ -29,7 +29,7 @@
     // ===== 配置 =====
     var IMAGE_PATH = '../images/比那名居天子.avif';
     var CSS_PATH   = '../css/easter-egg.css';
-    var AUDIO_PATH = '../audio/Chiruno-Baka.mp3';
+    var AUDIO_PATH = '../audio/yukkuri.wav';
 
     // 备选资源（当本地资源 404 时使用）
     var FALLBACK_IMAGE = 'https://i.pravatar.cc/150?img=5';  // 可替换为任何稳定图片
@@ -139,7 +139,7 @@
     function playBaka() {
         try {
             audio = new Audio(assetUrl(AUDIO_PATH));
-            audio.type = 'audio/mpeg';
+            audio.type = 'audio/wav';
             audio.preload = 'auto';
             // 如果本地音频加载失败，改用备选
             audio.addEventListener('error', function() {
