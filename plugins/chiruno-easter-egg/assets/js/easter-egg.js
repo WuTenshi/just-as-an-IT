@@ -27,7 +27,7 @@
     }
 
     // ===== 配置 =====
-    var IMAGE_PATH = '../images/Chiruno.png';
+    var IMAGE_PATH = '../images/比那名居天子.avif';
     var CSS_PATH   = '../css/easter-egg.css';
     var AUDIO_PATH = '../audio/Chiruno-Baka.mp3';
 
@@ -99,7 +99,7 @@
     function spawnEgg(x, y) {
         var img = document.createElement('img');
         img.className = 'chiruno-egg';
-        img.alt = '琪露诺';
+        img.alt = '比那名居天子';
         img.draggable = false;
         img.style.left = x + 'px';
         img.style.top = y + 'px';
